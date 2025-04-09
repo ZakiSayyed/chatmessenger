@@ -108,6 +108,14 @@ def send_friend_request(sender, receiver_email):
     if receiver_email not in users_df['email'].values:
         st.warning("User does not exist.")
         return
+
+    # Check if the receiver is already a friend
+    friends = get_friends(sender)
+    if receiver_email in friends:
+        st.info("Already a friend.")
+        return
+
+    # Proceed to send the friend request
     new_request = [sender, receiver_email, 'Pending']
     worksheet = sh.worksheet('friend_requests')  # Access the 'friend_requests' sheet
     worksheet.append_row(new_request, value_input_option='RAW')  # Append the new row
