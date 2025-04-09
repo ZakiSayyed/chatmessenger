@@ -237,7 +237,7 @@ def main():
                 if msg_text.strip():  # Ensure the message is not empty or just whitespace
                     with st.spinner("Sending..."):
                         send_message(st.session_state.user, friend, msg_text)
-                    st.experimental_rerun()  # Refresh the chat after sending a message
+                    st.rerun()  # Refresh the chat after sending a message
                 else:
                     st.warning("Message cannot be empty.")
 
